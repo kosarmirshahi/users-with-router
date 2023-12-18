@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { UserType } from "../../types/UserType";
 import { useParams } from "react-router";
+import Loader from "../Loader/Loader";
 
 function UserInformation() {
   const [information, setInformation] = useState<UserType | null>(null);
@@ -14,7 +15,7 @@ function UserInformation() {
     }
     fetchUserData();
   }, []);
-
+  if (information === null) return <Loader />;
   return (
     <div className="w-5/12 m-auto mt-28 flex justify-around border-2 p-8">
       <div className="w-1/2">
